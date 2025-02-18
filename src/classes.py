@@ -1,5 +1,5 @@
 class Product:
-    """qwe"""
+    """Содержит информацию о продуктах"""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
@@ -9,10 +9,10 @@ class Product:
 
 
 class Category:
-    """qwe"""
+    """Содержит информацию о категориях и продуктах из класса Products"""
 
-    category_count = 0
-    product_count = 0
+    category_count = 0  # Счётчик кол-ва выведенных категорий (всего)
+    product_count = 0  # Счётчик кол-ва выведенных продуктов (всего)
 
     def __init__(self, name: str, description: str, products: list[Product]):
         self.name = name
@@ -20,7 +20,5 @@ class Category:
         self.products = products
 
         Category.category_count += 1
-
         product_count = len(self.products)
-
         Category.product_count += product_count
