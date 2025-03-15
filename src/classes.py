@@ -1,9 +1,8 @@
-from typing import Any, Union, Optional
+from typing import Any, Optional
 
 
 class Product:
     """Содержит информацию о продуктах"""
-
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
@@ -11,11 +10,9 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     @property
-    def price(self)-> float:
+    def price(self) -> float:
         return self.__price
-
 
     @price.setter
     def price(self, value: float) -> None:
@@ -29,10 +26,8 @@ class Product:
             else:
                 self.__price = value
 
-
     @classmethod
-    def new_product(cls, params: dict[str, Any], product_list: Optional[list['Product']] = None)\
-                                                                                                        -> 'Product':
+    def new_product(cls, params: dict[str, Any], product_list: Optional[list["Product"]] = None) -> "Product":
         if product_list is not None:
             for product in product_list:
                 if product.name == params["name"]:
