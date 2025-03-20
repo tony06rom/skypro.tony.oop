@@ -22,64 +22,26 @@
 
 ### Инструкции для модулей:
 
-1. Модуль _**.....**_
+1. Модуль _**classes**_
    - Доступные функции:
      - .....
      - .....
 
      _Пример импорта:_
        ```
-     from src.masks import get_mask_card_number
+     from src.classes import Category, Product
        ```
 
-     <details>
-     <summary>Пример работы:</summary>
-      
-     [![Example_masks][1]][1]
-   
-      [1]: /data/images/for_readme_file/Example_masks.png
-      </details>
-   
-   
-2. Модуль _**.....**_
+2. Модуль _**read_json_class**_
     - Доступные функции:
-      - .....
-      - ..... 
+      - load_json_file_with_classes
       
       _Пример импорта:_
         ```
-      from src.widget import mask_account_card
+      from src.read_json_class import load_json_file_with_classes
         ```
-
-       <details>
-       <summary>Пример работы:</summary>
       
-       [![Example_widget][2]][2]
-   
-       [2]: /data/images/for_readme_file/Example_widget.png
-       </details>
-
-   
-3. Модуль _**.....**_
-    - Доступные функции:
-      - ......
-      - ....
-      
-      _Пример импорта:_
-        ```
-      from src.processing import get_mask_card_number
-      ```
-
-       <details>
-       <summary>Пример работы:</summary>
-      
-       [![Example_processing][3]][3]
-   
-       [3]: /data/images/for_readme_file/Example_processing.png
-       </details>
-
-      
-Все тесты функций можно выполнять из директории [moduls_test](/moduls_test)
+Все проверки можно осуществить в [execute_modules](/execute_modules) и main.py файле в корне проекта
 
 ===============================================================================================
 ## Pytest
@@ -117,9 +79,9 @@
 
 ## logging
 
-На данный момент логирование реализовано для модулей **masks** и **utils**
+Логирование отсутствует
 
-### Директория логов: ```../logs```
+### Директория логов: ```./logs```
 
 ### Доступные уровни логирования:
 - critical
@@ -142,15 +104,6 @@
 ### Используемый формат логов:
 ```%(asctime)s | %(name)s | %(levelname)s | %(funcName)s: %(message)s```
 
-   <details>
-   <summary>Пример лога (utils):</summary>
-  
-   [![Example_logging][8]][8]
-
-   [8]: /data/images/for_readme_file/Example_logging.png
-   </details>
-
-
 ===============================================================================================
 
 ## Проблемы тестирования
@@ -169,12 +122,9 @@
 ## Примечания по проекту
 
 
-
 ===============================================================================================
 
 ## Проблемы проекта
-
-
 
 
 ===============================================================================================
