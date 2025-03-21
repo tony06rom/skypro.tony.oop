@@ -36,6 +36,12 @@ class Product:
                         product.price = params["price"]
         return Product(params["name"], params["description"], params["price"], params["quantity"])
 
+    def __str__(self):
+        return f'{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.'
+
+    def __add__(self, other):
+        return self.price * self.quantity + other.__price * other.quantity
+
 
 class Category:
     """Содержит информацию о категориях и продуктах из класса Products"""
@@ -65,3 +71,27 @@ class Category:
             self.product_count += 1
         else:
             raise Exception
+
+    def __str__(self):
+        total_products = 0
+        for product in self.__products:
+            total_products += product.quantity
+        return f'{self.name}, количество продуктов: {total_products} шт.'
+
+
+class CategoryIterNext:
+    def __init__(self, category):
+        self.category = category
+        self.num_product = 0
+
+    def __iter__(self):
+        self.num_product = 0
+        return self
+
+    def __next__(self):
+        if self.num_product <= len(self.category.products):
+            product = self.category.products[self.num_product]
+            self.num_product += 1
+            return product
+        else:
+            raise StopIteration
