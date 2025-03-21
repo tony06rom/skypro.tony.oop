@@ -36,10 +36,10 @@ class Product:
                         product.price = params["price"]
         return Product(params["name"], params["description"], params["price"], params["quantity"])
 
-    def __str__(self):
-        return f'{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.'
+    def __str__(self) -> str:
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
-    def __add__(self, other):
+    def __add__(self, other: Any) -> Any:
         return self.price * self.quantity + other.__price * other.quantity
 
 
@@ -72,23 +72,25 @@ class Category:
         else:
             raise Exception
 
-    def __str__(self):
+    def __str__(self) -> str:
         total_products = 0
         for product in self.__products:
             total_products += product.quantity
-        return f'{self.name}, количество продуктов: {total_products} шт.'
+        return f"{self.name}, количество продуктов: {total_products} шт."
 
 
 class CategoryIterNext:
-    def __init__(self, category):
+    """Перебирает товары одной категории"""
+
+    def __init__(self, category: Any):
         self.category = category
         self.num_product = 0
 
-    def __iter__(self):
+    def __iter__(self) -> 'CategoryIterNext':
         self.num_product = 0
         return self
 
-    def __next__(self):
+    def __next__(self) -> Any:
         if self.num_product <= len(self.category.products):
             product = self.category.products[self.num_product]
             self.num_product += 1
