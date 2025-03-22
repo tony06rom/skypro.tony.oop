@@ -67,3 +67,24 @@ def test_add_product() -> None:
     assert category.products == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
     with pytest.raises(Exception):
         category.add_product(category)
+
+
+def test_category_str(category: Category) -> None:
+    assert str(category) == "Категория 1, количество продуктов: 12 шт."
+
+
+def test_product_str(product1: Product, product2: Product) -> None:
+    assert str(product1) == "Товар 1, 100.0 руб. Остаток: 5 шт."
+    assert str(product2) == "Товар 2, 200.0 руб. Остаток: 7 шт."
+
+
+def test_product_add(product1: Product, product2: Product) -> None:
+    assert product1.price == 100.0
+    assert product2.price == 200.0
+    assert product1.quantity == 5
+    assert product2.quantity == 7
+    cost_product1 = product1.price * product1.quantity
+    cost_product2 = product2.price * product2.quantity
+    total_cost = cost_product1 + cost_product2
+    assert product1 + product2 == 1900.0
+    assert product1 + product2 == total_cost

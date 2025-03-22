@@ -8,3 +8,13 @@ def category() -> Category:
     product1 = Product("Товар 1", "Описание товара 1", 100.00, 5)
     product2 = Product("Товар 2", "Описание товара 2", 200.00, 7)
     return Category("Категория 1", "Описание категории 1", [product1, product2])
+
+
+@pytest.fixture
+def product1() -> Product:
+    return Product(name="Товар 1", description="256GB, Описание товара 1", price=100.00, quantity=5)
+
+
+@pytest.fixture
+def product2() -> Product:
+    return Product(name="Товар 2", description="Описание товара 2", price=200.00, quantity=7)
