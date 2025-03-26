@@ -1,6 +1,6 @@
 import pytest
 
-from src.classes import Category, Product, CategoryIterNext
+from src.classes import Category, Product, Smartphone, LawnGrass
 
 
 @pytest.fixture
@@ -11,6 +11,13 @@ def category() -> Category:
 
 
 @pytest.fixture
+def category_2() -> Category:
+    product3 = Product("Товар 3", "Описание товара 1", 70, 3)
+    product4 = Product("Товар 4", "Описание товара 2", 335000, 6)
+    return Category("Категория 2", "Описание категории 2", [product3, product4])
+
+
+@pytest.fixture
 def product1() -> Product:
     return Product(name="Товар 1", description="256GB, Описание товара 1", price=100.00, quantity=5)
 
@@ -18,3 +25,15 @@ def product1() -> Product:
 @pytest.fixture
 def product2() -> Product:
     return Product(name="Товар 2", description="Описание товара 2", price=200.00, quantity=7)
+
+
+@pytest.fixture
+def fix_lawn_grass():
+    grass = LawnGrass("Grunt", "Clear black grass", 500, 30, "RUS", "1 month", "black")
+    return grass
+
+
+@pytest.fixture
+def fix_smartphones():
+    phone = Smartphone("iPhone", "Best", 79000, 5, "Apple", "15", "256Gb", "Blue")
+    return phone

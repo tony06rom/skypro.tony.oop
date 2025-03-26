@@ -1,6 +1,6 @@
 import pytest
 
-from src.classes import Category, Product
+from src.classes import Category, Product, Smartphone, LawnGrass
 
 
 def test_product_init():
@@ -88,3 +88,29 @@ def test_product_add(product1: Product, product2: Product) -> None:
     total_cost = cost_product1 + cost_product2
     assert product1 + product2 == 1900.0
     assert product1 + product2 == total_cost
+
+
+def test_smartphone(fix_smartphones) -> None:
+    phone = fix_smartphones
+    assert phone.name == "iPhone"
+    assert phone.model == "15"
+    assert phone.color == "Blue"
+    assert issubclass(phone.__class__, Product)
+
+
+def test_lawn_grass(fix_lawn_grass) -> None:
+    grass = fix_lawn_grass
+    assert grass.name == "Grunt"
+    assert grass.description == "Clear black grass"
+    assert grass.price == 500
+    assert grass.quantity == 30
+    assert grass.color == "black"
+    assert issubclass(grass.__class__, Product)
+
+
+def test_product_sum(fix_smartphones, fix_lawn_grass) -> None:
+    phone = fix_smartphones
+    grass = fix_lawn_grass
+    with pytest.raises(TypeError):
+        result = phone + grass
+        return result
