@@ -75,7 +75,6 @@ class Category:
         else:
             raise TypeError
 
-
     def __str__(self) -> str:
         total_products = 0
         for product in self.__products:
@@ -90,7 +89,7 @@ class CategoryIterNext:
         self.category = category
         self.num_product = 0
 
-    def __iter__(self) -> 'CategoryIterNext':
+    def __iter__(self) -> "CategoryIterNext":
         self.num_product = 0
         return self
 
@@ -106,7 +105,17 @@ class CategoryIterNext:
 class Smartphone(Product):
     """Расширение класса Product для смартфонов"""
 
-    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: str,
+        model: str,
+        memory: str,
+        color: str,
+    ):
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
         self.model = model
@@ -117,7 +126,16 @@ class Smartphone(Product):
 class LawnGrass(Product):
     """Расширение класса Product для газонной травы"""
 
-    def __init__(self, name, description, price, quantity, country, germination_period, color):
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ):
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period

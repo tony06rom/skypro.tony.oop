@@ -22,5 +22,4 @@ if __name__ == "__main__":
     print(product1 + product2)
     print(product1 + product3)
     print(product2 + product3)
-
     print(next(product1).name)
