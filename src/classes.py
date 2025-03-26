@@ -40,7 +40,10 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: Any) -> Any:
-        return self.price * self.quantity + other.__price * other.quantity
+        if type(self) is type(other):
+            return self.price * self.quantity + other.__price * other.quantity
+        else:
+            raise TypeError
 
 
 class Category:
@@ -66,11 +69,12 @@ class Category:
         return products_list
 
     def add_product(self, product: Product) -> None:
-        if isinstance(product, Product):
+        if isinstance(product, Product) or issubclass(self.__class__, Product):
             self.__products.append(product)
             self.product_count += 1
         else:
-            raise Exception
+            raise TypeError
+
 
     def __str__(self) -> str:
         total_products = 0
