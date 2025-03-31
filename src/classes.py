@@ -1,13 +1,14 @@
-from typing import Any, Optional
 from abc import ABC, abstractmethod
+from typing import Any, Optional
 
 
 class MixinLog:
     """Выводит информацию об объекте в консоль"""
-    def __init__(self):
+
+    def __init__(self) -> None:
         print(repr(self))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         values = list(vars(self).values())
         return f"{self.__class__.__name__}({", ".join([str(item) for item in values])})"
 
@@ -16,20 +17,13 @@ class BaseProduct(ABC):
     """Абстрактный класс для Product (шаблон)"""
 
     @abstractmethod
-    def price(self):
+    def __str__(self) -> str:
         pass
 
     @abstractmethod
-    def new_product(self):
+    def __add__(self, other: Any) -> Any:
         pass
 
-    @abstractmethod
-    def __str__(self):
-        pass
-
-    @abstractmethod
-    def __add__(self, other):
-        pass
 
 class Product(BaseProduct, MixinLog):
     """Содержит информацию о продуктах"""
@@ -171,4 +165,3 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
-

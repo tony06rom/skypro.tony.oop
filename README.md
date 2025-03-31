@@ -4,15 +4,19 @@
 ![GitHub_image](/data/images/for_readme_file/GitHub.png)
 
 # Второй модуль. ООП
+
 ## Здесь будет проводиться разработка (обучение) приложения
 
 Приложение на данный момент содержит:
-- модуль с классами Category, Products
+
+- модуль с классами Category, Product(BaseProduct, MixinLog), BaseProduct(ABC), MixinLog, CategoryIterNext, Smartphone(
+  Product), LawnGrass(Product),
 - gitignore настроен на работу с PyCharm
 - подключены линтеры
 - локальный Git связан с репозиторием на GitHub
 - модуль чтения из JSON-файла
-- 
+-
+
 ===============================================================================================
 
 ### Логика готовой программы
@@ -20,38 +24,45 @@
 Будет описано в последних дамашних работах.
 
 ===============================================================================================
+
 ### Инструкции запуска программы:
+
 Имеется Несколько файлов main.
 *main* - самописанный файл (делался для домашней работы 14.1)
 *14.1_main* - давался по заданию. Использовать его
 *14.2_main* - давался по заданию. Использовать его
+*15.1_main* - давался по заданию. Использовать его
+*15.2_main* - давался по заданию. Использовать его
+*16.1_main* - давался по заданию. Использовать его
+*16.2_main* - давался по заданию. Использовать его
 
 ### Инструкции для модулей:
 
 1. Модуль _**classes**_
-   - Доступные классы:
-     - Category
-     - Products
-     - Smartphone (наследует от Product)
-     - LawnGrass (наследует от Product)
+    - Доступные классы:
+        - Category
+        - Products
+        - Smartphone (наследует от Product)
+        - LawnGrass (наследует от Product)
 
-     _Пример импорта:_
-       ```
-     from src.classes import Category, Product
-       ```
+      _Пример импорта:_
+        ```
+      from src.classes import Category, Product
+        ```
 
 2. Модуль _**read_json_class**_
     - Доступные функции:
-      - load_json_file_with_classes
-      
+        - load_json_file_with_classes
+
       _Пример импорта:_
         ```
       from src.read_json_class import load_json_file_with_classes
         ```
-      
+
 Все проверки можно осуществить в [execute_modules](/execute_modules) и main.py файле в корне проекта
 
 ===============================================================================================
+
 ## Pytest
 
 Реализовано тестирование функций при помощи pytest.
@@ -60,26 +71,26 @@
 
    <details>
    <summary>Проверка по файлам:</summary>
-  
-   [![Example_processing][5]][5]
 
-   [5]: /data/images/for_readme_file/Pytest_files.png
+[![Example_processing][5]][5]
+
+[5]: /data/images/for_readme_file/Pytest_files.png
    </details>
 
    <details>
    <summary>Проверка по функциям:</summary>
-  
-   [![Example_processing][6]][6]
 
-   [6]: /data/images/for_readme_file/Pytest_functions.png
+[![Example_processing][6]][6]
+
+[6]: /data/images/for_readme_file/Pytest_functions.png
    </details>
 
    <details>
    <summary>Проверка по классам:</summary>
-  
-   [![Example_processing][7]][7]
 
-   [7]: /data/images/for_readme_file/Pytest_classes.png
+[![Example_processing][7]][7]
+
+[7]: /data/images/for_readme_file/Pytest_classes.png
    </details>
 
 
@@ -92,6 +103,7 @@
 ### Директория логов: ```./logs```
 
 ### Доступные уровни логирования:
+
 - critical
 - error
 - warning
@@ -99,6 +111,7 @@
 - debug
 
 ### Доступные форматы логирования:
+
 * __%(asctime)s__ — дата и время события логирования
 * __%(name)s__ — имя логера
 * __%(levelname)s__ — уровень логирования
@@ -110,6 +123,7 @@
 * __%(thread)d__ — ID потока
 
 ### Используемый формат логов:
+
 ```%(asctime)s | %(name)s | %(levelname)s | %(funcName)s: %(message)s```
 
 ===============================================================================================
@@ -142,4 +156,5 @@
 ===============================================================================================
 
 Этот проект выполняется совместно с [SkyPro](https://sky.pro/)
-####  Автор проекта: **Romanenko Anton**
+
+#### Автор проекта: **Romanenko Anton**

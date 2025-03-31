@@ -1,6 +1,6 @@
 import pytest
 
-from src.classes import Category, Product, LawnGrass
+from src.classes import Category, Product
 
 
 def test_product_init():
