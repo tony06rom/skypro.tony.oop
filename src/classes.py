@@ -2,6 +2,16 @@ from typing import Any, Optional
 from abc import ABC, abstractmethod
 
 
+class MixinLog:
+    """Выводит информацию об объекте в консоль"""
+    def __init__(self):
+        print(repr(self))
+
+    def __repr__(self):
+        values = list(vars(self).values())
+        return f"{self.__class__.__name__}({", ".join([str(item) for item in values])})"
+
+
 class BaseProduct(ABC):
     """Абстрактный класс для Product (шаблон)"""
 
@@ -21,7 +31,7 @@ class BaseProduct(ABC):
     def __add__(self, other):
         pass
 
-class Product(BaseProduct):
+class Product(BaseProduct, MixinLog):
     """Содержит информацию о продуктах"""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
@@ -29,6 +39,7 @@ class Product(BaseProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @property
     def price(self) -> float:
