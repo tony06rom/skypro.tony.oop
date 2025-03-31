@@ -1,6 +1,6 @@
 import pytest
 
-from src.classes import Category, Product
+from src.classes import Category, Product, LawnGrass
 
 
 def test_product_init():
@@ -27,6 +27,8 @@ def test_total_products(category):
 
 def test_price_setter_getter(capsys) -> None:
     product = Product("Xiaomi 30T", "Топ за свои деньги", 55000, 3)
+    captured = capsys.readouterr()
+    assert captured.out == "Product(Xiaomi 30T, Топ за свои деньги, 55000, 3)\n"
     product.price = 100000
     assert product.price == 100000
     product.price = 0
@@ -114,3 +116,8 @@ def test_product_sum(fix_smartphones, fix_lawn_grass) -> None:
     with pytest.raises(TypeError):
         result = phone + grass
         return result
+
+
+def test_print_mixinlog(capsys, fix_lawn_grass) -> None:
+    message = capsys.readouterr()
+    assert message.out.strip() == "LawnGrass(Grunt, Clear black grass, 500, 30)"
