@@ -1,7 +1,27 @@
 from typing import Any, Optional
+from abc import ABC, abstractmethod
 
 
-class Product:
+class BaseProduct(ABC):
+    """Абстрактный класс для Product (шаблон)"""
+
+    @abstractmethod
+    def price(self):
+        pass
+
+    @abstractmethod
+    def new_product(self):
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+class Product(BaseProduct):
     """Содержит информацию о продуктах"""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
@@ -140,3 +160,4 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
+
