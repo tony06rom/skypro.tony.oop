@@ -11,17 +11,17 @@ def test_product_init():
     assert product.quantity == 10
 
 
-def test_category_init(category):
-    assert category.name == "Категория 1"
-    assert category.description == "Описание категории 1"
-    assert category.products == "Товар 1, 100.0 руб. Остаток: 5 шт.\nТовар 2, 200.0 руб. Остаток: 7 шт.\n"
+def test_category_init(fix_category):
+    assert fix_category.name == "Категория 1"
+    assert fix_category.description == "Описание категории 1"
+    assert fix_category.products == "Товар 1, 100.0 руб. Остаток: 5 шт.\nТовар 2, 200.0 руб. Остаток: 7 шт.\n"
 
 
-def test_total_categories(category):
+def test_total_categories(fix_category):
     assert Category.category_count == 2
 
 
-def test_total_products(category):
+def test_total_products(fix_category):
     assert Category.product_count == 6
 
 
@@ -71,25 +71,25 @@ def test_add_product() -> None:
         category.add_product(category)
 
 
-def test_category_str(category: Category) -> None:
-    assert str(category) == "Категория 1, количество продуктов: 12 шт."
+def test_category_str(fix_category: Category) -> None:
+    assert str(fix_category) == "Категория 1, количество продуктов: 12 шт."
 
 
-def test_product_str(product1: Product, product2: Product) -> None:
-    assert str(product1) == "Товар 1, 100.0 руб. Остаток: 5 шт."
-    assert str(product2) == "Товар 2, 200.0 руб. Остаток: 7 шт."
+def test_product_str(fix_product1: Product, fix_product2: Product) -> None:
+    assert str(fix_product1) == "Товар 1, 100.0 руб. Остаток: 5 шт."
+    assert str(fix_product2) == "Товар 2, 200.0 руб. Остаток: 7 шт."
 
 
-def test_product_add(product1: Product, product2: Product) -> None:
-    assert product1.price == 100.0
-    assert product2.price == 200.0
-    assert product1.quantity == 5
-    assert product2.quantity == 7
-    cost_product1 = product1.price * product1.quantity
-    cost_product2 = product2.price * product2.quantity
+def test_product_add(fix_product1: Product, fix_product2: Product) -> None:
+    assert fix_product1.price == 100.0
+    assert fix_product2.price == 200.0
+    assert fix_product1.quantity == 5
+    assert fix_product2.quantity == 7
+    cost_product1 = fix_product1.price * fix_product1.quantity
+    cost_product2 = fix_product2.price * fix_product2.quantity
     total_cost = cost_product1 + cost_product2
-    assert product1 + product2 == 1900.0
-    assert product1 + product2 == total_cost
+    assert fix_product1 + fix_product2 == 1900.0
+    assert fix_product1 + fix_product2 == total_cost
 
 
 def test_smartphone(fix_smartphones) -> None:
@@ -121,3 +121,24 @@ def test_product_sum(fix_smartphones, fix_lawn_grass) -> None:
 def test_print_mixinlog(capsys, fix_lawn_grass) -> None:
     message = capsys.readouterr()
     assert message.out.strip() == "LawnGrass(Grunt, Clear black grass, 500, 30)"
+
+
+def test_add_product_zero_quantity(capsys) -> None:
+    with pytest.raises(ValueError):
+        Product(name="Товар 1", description="256GB, Описание товара 1", price=100.00, quantity=0)
+        message = capsys.readouterr()
+        assert message.out.strip() == "Товар с нулевым количеством не может быть добавлен"
+
+
+@pytest.fixture
+def smartphones() -> Category:
+    phone_1 = Product("Xiaomi 30T", "Топ за свои деньги", 55000, 3)
+    phone_2 = Product("Samsung Galaxy S25", "Просто топ", 125000, 5)
+    return Category("Смартфоны", "Описание", [phone_1, phone_2])
+
+
+def test_middle_price(fix_category) -> None:
+    empty_category = Category("Empty Category", "Empty description", [])
+    not_empty_category = fix_category
+    assert empty_category.middle_price() == 0
+    assert not_empty_category.middle_price() == 25.0
