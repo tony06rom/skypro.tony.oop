@@ -109,17 +109,17 @@ class Category:
         return f"{self.name}, количество продуктов: {total_products} шт."
 
 
-    def middle_price(self):
+    def middle_price(self) -> float:
         try:
-            prices = 0
-            goods = 0
-            for i, key in enumerate(self.__products):
-                prices += key.price
-                goods += key.quantity
-            result = prices / goods
+            total_price = 0.0
+            total_amount = 0
+            for product in self.__products:
+                total_price += product.price
+                total_amount += product.quantity
+            result = total_price / total_amount
             return round(result, 2)
         except ZeroDivisionError:
-            return 0
+            return 0.0
 
 
 class CategoryIterNext:

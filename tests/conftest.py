@@ -38,8 +38,7 @@ def fix_smartphones():
     phone = Smartphone("iPhone", "Best", 79000, 5, "Apple", "15", "256Gb", "Blue")
     return phone
 
+
 @pytest.fixture
 def fix_empty_category() -> Category:
-    product1 = Product("Товар 1", "Описание товара 1", 100.00, 5)
-    product2 = Product("Товар 2", "Описание товара 2", 200.00, 7)
     return Category("Категория 1", "Описание категории 1", [])

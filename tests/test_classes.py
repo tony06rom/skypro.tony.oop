@@ -127,7 +127,8 @@ def test_add_product_zero_quantity(capsys) -> None:
     with pytest.raises(ValueError):
         Product(name="Товар 1", description="256GB, Описание товара 1", price=100.00, quantity=0)
         message = capsys.readouterr()
-        assert (message.out.strip() == "Товар с нулевым количеством не может быть добавлен")
+        assert message.out.strip() == "Товар с нулевым количеством не может быть добавлен"
+
 
 @pytest.fixture
 def smartphones() -> Category:
