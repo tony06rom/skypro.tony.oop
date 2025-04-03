@@ -109,6 +109,19 @@ class Category:
         return f"{self.name}, количество продуктов: {total_products} шт."
 
 
+    def middle_price(self):
+        try:
+            prices = 0
+            goods = 0
+            for i, key in enumerate(self.__products):
+                prices += key.price
+                goods += key.quantity
+            result = prices / goods
+            return round(result, 2)
+        except ZeroDivisionError:
+            return 0
+
+
 class CategoryIterNext:
     """Перебирает товары одной категории"""
 
