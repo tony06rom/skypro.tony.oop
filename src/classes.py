@@ -1,7 +1,31 @@
+from abc import ABC, abstractmethod
 from typing import Any, Optional
 
 
-class Product:
+class MixinLog:
+    """Выводит информацию об объекте в консоль"""
+
+    def __init__(self) -> None:
+        print(repr(self))
+
+    def __repr__(self) -> str:
+        values = list(vars(self).values())
+        return f"{self.__class__.__name__}({", ".join([str(item) for item in values])})"
+
+
+class BaseProduct(ABC):
+    """Абстрактный класс для Product (шаблон)"""
+
+    @abstractmethod
+    def __str__(self) -> str:
+        pass
+
+    @abstractmethod
+    def __add__(self, other: Any) -> Any:
+        pass
+
+
+class Product(BaseProduct, MixinLog):
     """Содержит информацию о продуктах"""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
@@ -9,6 +33,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @property
     def price(self) -> float:
